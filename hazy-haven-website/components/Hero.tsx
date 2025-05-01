@@ -2,18 +2,24 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 
-const Hero = () => {
+const Hero = ({ blurDataURL }: { blurDataURL: string }) => {
   return (
-    <section className="relative h-screen min-h-[700px] overflow-hidden text-white flex items-center justify-center text-center snap-start">
-      {/* Background Image with Parallax Effect */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: "url('/images/hero.jpeg')",
-          backgroundAttachment: "fixed",
-        }}
-      />
+    <section className="relative h-screen min-h-[700px] overflow-hidden text-white flex items-center justify-center text-center snap-start bg-black">
+      {/* Background Image with blur placeholder */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/images/hero.jpeg"
+          alt="Scenic nature reserve"
+          fill
+          className="object-cover"
+          quality={80}
+          priority
+          placeholder="blur"
+          blurDataURL={blurDataURL}
+        />
+      </div>
 
       {/* Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/20 z-10" />
@@ -32,15 +38,15 @@ const Hero = () => {
           Reconnect with tranquility and luxury in the heart of the reserve.
         </p>
         <div className="mt-6 flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0 sm:justify-center">
-          <Link href="/booking">
-            <button className="w-full sm:w-auto px-6 py-3 bg-yellow-500 hover:bg-yellow-600 text-lg font-semibold rounded-md shadow-md transition">
+          <Link href="/booking" passHref legacyBehavior>
+            <a className="w-full sm:w-auto px-6 py-3 bg-yellow-500 hover:bg-yellow-600 text-lg font-semibold rounded-md shadow-md transition text-center">
               Book Your Stay
-            </button>
+            </a>
           </Link>
-          <Link href="#explore-rooms">
-            <button className="w-full sm:w-auto px-6 py-3 border-2 border-white text-lg font-semibold rounded-md transition">
+          <Link href="#explore-rooms" passHref legacyBehavior>
+            <a className="w-full sm:w-auto px-6 py-3 border-2 border-white text-lg font-semibold rounded-md transition text-center">
               Explore Rooms
-            </button>
+            </a>
           </Link>
         </div>
       </motion.div>

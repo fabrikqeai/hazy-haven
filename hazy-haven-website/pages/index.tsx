@@ -1,7 +1,8 @@
 // pages/index.tsx
 
-import { NextPage } from "next";
+import { NextPage, GetStaticProps } from "next";
 import Head from "next/head";
+import { getBlurData } from "@/lib/getBlurData";
 
 // Components
 import Hero from "@/components/Hero";
@@ -13,7 +14,11 @@ import ExploreReserveCarousel from "@/components/ExploreReserveCarousel";
 import ExploreReserve from "@/components/ExploreReserve";
 import CTA from "@/components/CTA";
 
-const Home: NextPage = () => {
+interface HomeProps {
+  blurDataURL: string;
+}
+
+const Home: NextPage<HomeProps> = ({ blurDataURL }) => {
   return (
     <>
       <Head>
@@ -48,7 +53,7 @@ const Home: NextPage = () => {
       </Head>
 
       {/* Page Sections */}
-      <Hero />
+      <Hero blurDataURL={blurDataURL} />
       <AboutUs />
       <ExploreReserve />
       <ExploreReserveCarousel />
@@ -58,6 +63,16 @@ const Home: NextPage = () => {
       <CTA />
     </>
   );
+};
+
+export const getStaticProps: GetStaticProps = async () => {
+  const blurDataURL = await getBlurData("/images/hero.jpeg");
+
+  return {
+    props: {
+      blurDataURL,
+    },
+  };
 };
 
 export default Home;
