@@ -1,3 +1,10 @@
+Here's your **updated `README.md`** with a new section documenting the **blurred image support** you just added using `plaiceholder`, and a few minor improvements for clarity and completeness.
+
+---
+
+### ✅ Updated `README.md` (Recommended Version)
+
+```md
 # 🏡 Hazy Haven Guesthouse Website
 
 ![Project Preview](/public/images/preview.jpg)
@@ -8,7 +15,7 @@ A beautifully designed, responsive website for an upscale bed & breakfast and lo
 
 ## 🚀 Project Features
 
-- 🌄 **Full-screen Hero Section** with CTAs
+- 🌄 **Full-screen Hero Section** with CTAs and blurred image placeholder
 - 🛏️ **Featured Rooms** showcase with elegant UI
 - 🌍 **Local Experiences** teaser
 - 💬 **Guest Testimonials** carousel
@@ -16,6 +23,7 @@ A beautifully designed, responsive website for an upscale bed & breakfast and lo
 - 📅 **Booking Page** with room selection and pricing logic
 - 📞 **Contact Page** with map embed and live chat placeholder
 - 📱 Mobile-first responsive layout
+- ⚡ Optimized image loading with blur placeholders (`plaiceholder`)
 - 🎨 Built with utility-first Tailwind CSS styling
 
 ---
@@ -27,7 +35,7 @@ A beautifully designed, responsive website for an upscale bed & breakfast and lo
 ├── public/
 │   └── images/                # Optimized static images
 ├── pages/
-│   ├── index.tsx              # Homepage
+│   ├── index.tsx              # Homepage with getStaticProps
 │   ├── 404.tsx                # Custom Not Found page
 │   ├── booking.tsx            # Booking form and room selection
 │   ├── contact.tsx            # Contact form with map and live chat
@@ -43,7 +51,9 @@ A beautifully designed, responsive website for an upscale bed & breakfast and lo
 │   ├── GuestTestimonials.tsx
 │   ├── ExploreReserve.tsx
 │   ├── CTA.tsx
-│   └── Hero.tsx
+│   └── Hero.tsx               # Hero with blur placeholder image
+├── lib/
+│   └── getBlurData.ts         # Utility to generate blurDataURL
 ├── styles/
 │   └── globals.css            # Tailwind and global styles
 ├── .gitignore
@@ -62,6 +72,8 @@ A beautifully designed, responsive website for an upscale bed & breakfast and lo
 - [TypeScript](https://www.typescriptlang.org/) – Static type checking
 - [Tailwind CSS](https://tailwindcss.com/) – Utility-first CSS framework
 - [Framer Motion](https://www.framer.com/motion/) – Animation library (used in key sections)
+- [Plaiceholder](https://github.com/joe-bell/plaiceholder) – Image blur placeholder generation
+- [Sharp](https://sharp.pixelplumbing.com/) – Image processing library used by `plaiceholder`
 
 ---
 
@@ -90,7 +102,8 @@ npm run dev
 yarn dev
 ```
 
-4. **View in browser** 
+4. **View in browser**
+
 Visit [http://localhost:3000](http://localhost:3000)
 
 ---
@@ -101,6 +114,12 @@ Visit [http://localhost:3000](http://localhost:3000)
 npm run build
 npm run start
 ```
+
+---
+
+## 🧩 Image Blur Placeholder Support
+
+This project uses [`plaiceholder`](https://github.com/joe-bell/plaiceholder) to generate blurred image previews for the Hero section. Blur data is fetched at build time via `getStaticProps` and injected into the image component for a smooth visual experience during load.
 
 ---
 
@@ -123,4 +142,3 @@ MIT License — free to use and modify. See `LICENSE` for more information.
 ## 🙌 Acknowledgements
 
 Built by [FabrikqeAI](https://www.fabrikqeai.com) — digital development agency creating beautiful, functional web experiences.
-
